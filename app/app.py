@@ -8,7 +8,7 @@ soup = BeautifulSoup
 
 @app.route("/")
 def index():
-    return render_template("index.html", title="Please add your query parameter to URL. Default is load_title?url=https://google.com")
+    return render_template("base.html", title="/load_title?url=https://google.com")
 
 @app.route("/load_title")
 def load_title():
