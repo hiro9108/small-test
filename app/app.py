@@ -1,10 +1,8 @@
-from flask import Flask,redirect,render_template,request
+from flask import Flask, redirect, render_template, request
 from bs4 import BeautifulSoup
 import requests
 
 app = Flask(__name__)
-
-soup = BeautifulSoup
 
 @app.route("/")
 def index():
@@ -14,16 +12,10 @@ def index():
 def load_title():
     try:
         url = request.args.get("url")
-
         res = requests.get(url)
         soup = BeautifulSoup(res.text, "html.parser")
-        result = soup.title.string
-
-        print("--- Output ---")
-        print("Title: ", result)
-        print("--------------")
-
-        return render_template("index.html", title=result)
+        title = soup.title.string
+        return render_template("index.html", title=title)
     except:
         return redirect("/load_title?url=https://google.com")
   
